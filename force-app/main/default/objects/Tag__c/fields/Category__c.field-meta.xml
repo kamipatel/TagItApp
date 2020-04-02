@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <description>allows organizing of tags by predefined category subsets</description>
+    <externalId>false</externalId>
+    <inlineHelpText>allows organizing of tags by predefined category subsets</inlineHelpText>
+    <label>Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business Initiatives</fullName>
+                <default>false</default>
+                <label>Business Initiatives</label>
+            </value>
+            <value>
+                <fullName>Interest &amp; Hobbies</fullName>
+                <default>false</default>
+                <label>Interest &amp; Hobbies</label>
+            </value>
+            <value>
+                <fullName>Events &amp; Seminars</fullName>
+                <default>false</default>
+                <label>Events &amp; Seminars</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

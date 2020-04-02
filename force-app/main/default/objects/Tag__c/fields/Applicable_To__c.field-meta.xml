@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Applicable_To__c</fullName>
+    <defaultValue>&quot;ALL&quot;</defaultValue>
+    <description>API Name of the Objects that a given tag is applicable to. If ALL is selected then it would be applicable to All type of objects and if NO value is selected then it will be applicable to None.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>API Name of the Objects that a given tag is applicable to</inlineHelpText>
+    <label>Applicable To</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ALL</fullName>
+                <default>false</default>
+                <label>ALL</label>
+            </value>
+            <value>
+                <fullName>Account</fullName>
+                <default>false</default>
+                <label>Account</label>
+            </value>
+            <value>
+                <fullName>PersonAccount</fullName>
+                <default>false</default>
+                <label>PersonAccount</label>
+            </value>
+            <value>
+                <fullName>Contact</fullName>
+                <default>false</default>
+                <label>Contact</label>
+            </value>
+            <value>
+                <fullName>Lead</fullName>
+                <default>false</default>
+                <label>Lead</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

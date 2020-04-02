@@ -1,0 +1,23 @@
+{
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true,
+            "package": "TagIt App",
+            "versionName": "ver 0.1",
+            "versionNumber": "0.1.0.NEXT"
+        }
+    ],
+    "namespace": "tagitapp",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "48.0",
+    "packageAliases": {
+        "TagIt App": "0Ho3h0000004CAQCA2",
+        "TagIt App@0.1.0-1": "04t3h000001rWDCAA2",
+        "TagIt App@0.1.0-2": "04t3h000001rYwtAAE",
+        "TagIt App@0.1.0-3": "04t3h000001sNLGAA2",
+        "TagIt App@0.1.0-4": "04t3h000001sNTbAAM",
+        "TagIt App@0.1.0-5": "04t3h000001sPXgAAM",
+        "TagIt App@0.1.0-6": "04t3h000001sPg1AAE"
+    }
+}
