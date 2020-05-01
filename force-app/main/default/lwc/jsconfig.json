@@ -5,6 +5,9 @@
         "paths": {
             "c/tagIt": [
                 "tagIt/tagIt.js"
+            ],
+            "c/uploadTagFile": [
+                "uploadTagFile/uploadTagFile.js"
             ]
         }
     },

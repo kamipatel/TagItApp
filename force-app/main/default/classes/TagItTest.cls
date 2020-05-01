@@ -28,7 +28,6 @@ public class TagItTest {
 
         User u = [select Id, Email from User where Email='kamipatel@gmail.com' limit 1];
 
-
         System.runAs(u)
         {
             Account a = new Account(Name = 'TestAcct');        
@@ -41,6 +40,8 @@ public class TagItTest {
             t.Help_Text__c = 'high profile help';
             insert t;
 
+            TagHelper th = new TagHelper();
+            
             List<Tag__c> tags = TagHelper.getTags();
             System.assertEquals(1, tags.size());
 

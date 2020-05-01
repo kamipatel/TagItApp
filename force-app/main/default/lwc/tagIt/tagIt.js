@@ -9,8 +9,6 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import colors_icon from '@salesforce/resourceUrl/colors';
 
-
-
 export default class TagIt extends LightningElement {
     
     @api whichObject;
@@ -54,7 +52,7 @@ export default class TagIt extends LightningElement {
             //TBD
             //this.showCategory = true;
             data.forEach(function (rec, index) {                
-                catOptionsList.add(rec.Category__c);
+                catOptionsList.add(rec.tagitapp__Category__c);
                 
             });
 
@@ -93,11 +91,11 @@ export default class TagIt extends LightningElement {
             data.forEach(function (rec, index) {
 
                 updatedData.push({
-                    Id: rec.Tag__r.Id,
-                    Name: rec.Tag__r.Name,
-                    Description: rec.Tag__r.Description,
+                    Id: rec.tagitapp__Tag__r.Id,
+                    Name: rec.tagitapp__Tag__r.Name,
+                    Description: rec.tagitapp__Tag__r.Description,
                     linkRecId: rec.Id, 
-                    icon: colors_icon + '#' + rec.Tag__r.Tag_Color__c,
+                    icon: colors_icon + '#' + rec.tagitapp__Tag__r.tagitapp__Tag_Color__c,
                 });          
             });
 
@@ -170,7 +168,7 @@ export default class TagIt extends LightningElement {
                 Name: tag[0].Name,
                 Description: tag[0].Description,
                 linkRecId: vLinkRecId,
-                icon: colors_icon + '#' + tag[0].Tag_Color__c,
+                icon: colors_icon + '#' + tag[0].tagitapp__Tag_Color__c,
             };
     
             window.console.log("got tag id=" + tag[0].Id);
