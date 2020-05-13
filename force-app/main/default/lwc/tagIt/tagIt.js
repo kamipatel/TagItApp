@@ -1,18 +1,24 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import { deleteRecord } from 'lightning/uiRecordApi';
+import { updateRecord } from 'lightning/uiRecordApi';
 
 import getAccountTags from '@salesforce/apex/TagHelper.getAccountTags';
 import getTags from '@salesforce/apex/TagHelper.getTags';
 import createTagLink from '@salesforce/apex/TagHelper.CreateTagLink';
 import getUserRecordAccess from '@salesforce/apex/TagHelper.getUserRecordAccess';
+import softDeleteLink from '@salesforce/apex/TagHelper.SoftDeleteLink';
+
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 import colors_icon from '@salesforce/resourceUrl/colors';
 
+import ID_FIELD from '@salesforce/schema/Object_Tag__c.Id';
+import ISDELETED_FIELD from '@salesforce/schema/Object_Tag__c.IsDeleted__c';
+
 export default class TagIt extends LightningElement {
     
     @api whichObject;
-    @api recordId = '0012100000oWBgjAAG';
+    @api recordId = '0012F00000crIhPQAU';
 
     @track infoText;
 
@@ -52,8 +58,7 @@ export default class TagIt extends LightningElement {
             //TBD
             //this.showCategory = true;
             data.forEach(function (rec, index) {                
-                catOptionsList.add(rec.tagitapp__Category__c);
-                
+                catOptionsList.add(rec.tagitapp__Category__c);                
             });
 
             tempCatOptionsList.push({
@@ -114,7 +119,7 @@ export default class TagIt extends LightningElement {
     wiredUserRecordAccess({ error, data }) {
         if (data) {
             this.parentEditAccess = data.HasEditAccess;
-            //this.parentEditAccess = false;
+            //this.parentEditAccess = true; //TBD comment this
             console.log("this.parentEditAccess=" + this.parentEditAccess);
             this.error = undefined;
         } else if (error) {
@@ -146,6 +151,11 @@ export default class TagIt extends LightningElement {
         window.console.log("handleChange val=" + this.value);
 
         let tag = this.tags.filter(tag => tag.Name == this.value);
+        if(tag.length < 1) {
+            this.value = '';
+            return;
+        }
+
         let atag = this.atags.filter(tag => tag.Name == this.value);
         if(atag.length > 0) {
             this.value = '';
@@ -189,7 +199,8 @@ export default class TagIt extends LightningElement {
         this.infoText = 'Remove button was clicked!' + event.target.dataset.id;
         window.console.log("Before deleting tag link, id=" + event.target.dataset.id);
         if(this.parentEditAccess){
-            this.deleteTagLink(event.target.dataset.id);
+            //this.deleteTagLink(event.target.dataset.id);
+            this.softDeleteTagLink(event.target.dataset.id);            
             this.atags = this.atags.filter(atag => atag.linkRecId != event.target.dataset.id);
             window.console.log("After deleting tag link");
         }else{
@@ -213,14 +224,13 @@ export default class TagIt extends LightningElement {
     }
 
     handleCatChange(event){
-        //event.preventDefault();
+        event.preventDefault();
         window.console.log("handleCatChange selcat=" + event.target.value);
         if(event.target.value === this.ALL_LABEL){
             this.tags = this.alltags;
             return;
         }
-        this.tags = this.alltags.filter(atag => atag.Category__c == event.target.value);
-        window.console.log("handleCatChange selcat=" + JSON.stringify(this.tags));
+        this.tags = this.alltags.filter(atag => atag.tagitapp__Category__c === event.target.value);
     }   
 
     deleteTagLink(linkId) {
@@ -245,6 +255,21 @@ export default class TagIt extends LightningElement {
             });
     }
 
+
+    softDeleteTagLink(linkId) {
+        
+        softDeleteLink({
+            recordId: linkId
+        })
+        .then((data) => {            
+            console.log("softDeleteTagLink Id=" + data);
+        })
+        .catch((error) => {
+            this.message = 'softDeleteTagLink Error received: code' + error.errorCode + ', ' +
+                'message ' + error.body.message;
+        });                
+    }
+
     SaveTag(recId, tagId) {
         createTagLink({
             recordId: recId,
@@ -256,26 +281,10 @@ export default class TagIt extends LightningElement {
             return data;
         })
         .catch((error) => {
+            
             this.message = 'Error received: code' + error.errorCode + ', ' +
                 'message ' + error.body.message;
         });
     }
 
-    /*
-    getUserRecordAccessInfo(recId) {
-        let userRecord;
-        getUserRecordAccess({
-            recordId: recId
-        })
-        .then((data) => {
-            console.log("Got getUserRecordAccess=" + JSON.stringify(data));
-            this.parentEditAccess = data.HasEditAccess;
-            this.parentEditAccess = false;
-        })
-        .catch((error) => {
-            this.message = 'getUserRecordAccess Error received: code' + error.errorCode + ', ' +
-                'message ' + error.body.message;
-        });
-        
-    }*/
 }

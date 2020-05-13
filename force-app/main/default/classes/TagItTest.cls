@@ -49,6 +49,8 @@ public class TagItTest {
 
             List<Object_Tag__c> accountTags = TagHelper.getAccountTags(a.Id);
             System.assertEquals(1, accountTags.size());
+
+            TagHelper.SoftDeleteLink(oId);
         }
     }
 
