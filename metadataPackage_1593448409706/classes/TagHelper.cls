@@ -16,29 +16,6 @@ public static List<Tag__c> getTags() {
 
 @AuraEnabled
 public static String CreateTagLink(String recordId, String tagId) {
-
-    String [] insertFields = new String [] {'tagitapp__account__c',
-                                                   'tagitapp__tag__c',
-                                                   'tagitapp__isdeleted__c'};       
-    // Obtaining the field name/token map for the Object_Tag__c object
-    Map<String,Schema.SObjectField> m = Schema.SObjectType.Object_Tag__c.fields.getMap();
-    
-    System.debug('m.keySet=' + m.keySet());
-    for (String key : m.keySet()) {
-      System.debug('key=' + key);
-    }
-
-    for (String fieldToCheck : insertFields) {
-      System.debug('fieldToCheck=' + fieldToCheck);
-
-      System.debug('m.get(fieldToCheck)=' + m.get(fieldToCheck));
-
-      // Check if the user has create access on the each field
-      if (!m.get(fieldToCheck).getDescribe().isCreateable()) {
-        return 'FLS Error';
-      }
-    }
-
     Object_Tag__c o = new Object_Tag__c();
     o.Account__c = recordId;
     o.Tag__c = tagId;    
@@ -49,17 +26,6 @@ public static String CreateTagLink(String recordId, String tagId) {
 
 @AuraEnabled
 public static String SoftDeleteLink(String recordId) {
-
-    String [] updateFields = new String [] {'tagitapp__isdeleted__c'};       
-    // Obtaining the field name/token map for the Contact object
-    Map<String,Schema.SObjectField> m = Schema.SObjectType.Object_Tag__c.fields.getMap();
-    for (String fieldToCheck : updateFields) {
-      // Check if the user has create access on the each field
-      if (!m.get(fieldToCheck).getDescribe().isCreateable()) {
-        return 'FLS Error';
-      }
-    }
-
     Object_Tag__c o = [select Id, IsDeleted__c from Object_Tag__c where Id=:recordId WITH SECURITY_ENFORCED];
     o.IsDeleted__c = true;    
     update o;

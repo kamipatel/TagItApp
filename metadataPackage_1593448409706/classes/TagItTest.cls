@@ -30,8 +30,6 @@ public class TagItTest {
 
         System.runAs(u)
         {
-            Test.startTest();
-
             Account a = new Account(Name = 'TestAcct');        
             insert a;
     
@@ -53,8 +51,6 @@ public class TagItTest {
             System.assertEquals(1, accountTags.size());
 
             TagHelper.SoftDeleteLink(oId);
-
-            Test.stopTest();
         }
     }
 
