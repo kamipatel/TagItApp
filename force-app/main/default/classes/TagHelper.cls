@@ -23,16 +23,7 @@ public static String CreateTagLink(String recordId, String tagId) {
     // Obtaining the field name/token map for the Object_Tag__c object
     Map<String,Schema.SObjectField> m = Schema.SObjectType.Object_Tag__c.fields.getMap();
     
-    System.debug('m.keySet=' + m.keySet());
-    for (String key : m.keySet()) {
-      System.debug('key=' + key);
-    }
-
     for (String fieldToCheck : insertFields) {
-      System.debug('fieldToCheck=' + fieldToCheck);
-
-      System.debug('m.get(fieldToCheck)=' + m.get(fieldToCheck));
-
       // Check if the user has create access on the each field
       if (!m.get(fieldToCheck).getDescribe().isCreateable()) {
         return 'FLS Error';
