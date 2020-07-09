@@ -46,7 +46,7 @@ public static String SoftDeleteLink(String recordId) {
     Map<String,Schema.SObjectField> m = Schema.SObjectType.Object_Tag__c.fields.getMap();
     for (String fieldToCheck : updateFields) {
       // Check if the user has create access on the each field
-      if (!m.get(fieldToCheck).getDescribe().isCreateable()) {
+      if (!m.get(fieldToCheck).getDescribe().isUpdateable()) {
         return 'FLS Error';
       }
     }
