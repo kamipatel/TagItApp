@@ -4,8 +4,8 @@
             "path": "force-app",
             "default": true,
             "package": "TagIt App",
-            "versionName": "ver 7.2.0.0",
-            "versionNumber": "7.2.0.0"
+            "versionName": "ver 7.3.0.0",
+            "versionNumber": "7.3.0.0"
         }
     ],
     "namespace": "tagitapp",
