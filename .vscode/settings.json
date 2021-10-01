@@ -4,6 +4,5 @@
     "**/bower_components": true,
     "**/.sfdx": true
   },
-  "xml.java.home": "",
   "salesforcedx-vscode-apex.java.home": "/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"
 }

@@ -4,8 +4,8 @@
             "path": "force-app",
             "default": true,
             "package": "TagIt App",
-            "versionName": "v3",
-            "versionNumber": "7.5.0.NEXT"
+            "versionName": "v8",
+            "versionNumber": "8.0.0.NEXT"
         }
     ],
     "namespace": "tagitapp",
@@ -45,6 +45,8 @@
         "TagIt App@7.3.0-0": "04t3h000004Yr2DAAS",
         "TagIt App@7.4.0-4": "04t3h000004Rd39AAC",
         "TagIt App@7.4.0-5": "04t3h000004Rd3EAAS",
-        "TagIt App@7.5.0-1": "04t3h000004Rd3nAAC"
+        "TagIt App@7.5.0-1": "04t3h000004Rd3nAAC",
+        "TagIt App@8.0.0-1": "04t3h0000045tZmAAI",
+        "TagIt App@8.0.0-2": "04t3h0000045tZrAAI"
     }
 }
