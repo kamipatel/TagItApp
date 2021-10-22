@@ -1,7 +1,10 @@
 public with sharing class TagHelper {
 
-    public TagHelper() {
+//  public virtual class BaseException extends AuraHandledException {}
+//  public class OtherException extends BaseException {}
 
+
+    public TagHelper() {
 }
 
 @AuraEnabled(cacheable=true)
@@ -61,5 +64,27 @@ public static String SoftDeleteLink(String recordId) {
 public static UserRecordAccess getUserRecordAccess(String recordId) {
     return [SELECT RecordId, HasEditAccess FROM UserRecordAccess WHERE UserId = :UserInfo.getUserId() AND RecordId=: recordId WITH SECURITY_ENFORCED];
 }
+
+@AuraEnabled(cacheable=false)
+public static String getSomething(String data) {
+  Account acc = new Account();
+//  if(data == 'FAIL') acc = null;
+
+    Integer i=0;
+    // Your code here
+    //if (i < 5) throw new AuraHandledException('This is bad');
+
+    if (i < 5) throw new System.LimitException();
+
+  return 'ERROR';
+}
+
+/*
+public static void BlowUpTheSOQLLimit(){
+        for (Integer i = 0; i < 200; i++) {
+            List<Account> a = [select id from Account];
+   
+}
+*/
 
 }

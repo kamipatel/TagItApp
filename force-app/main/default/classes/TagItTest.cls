@@ -44,6 +44,7 @@ public class TagItTest {
 
             TagHelper th = new TagHelper();
             
+            
             List<Tag__c> tags = TagHelper.getTags();
             System.assertEquals(1, tags.size());
 
@@ -52,7 +53,10 @@ public class TagItTest {
             List<Object_Tag__c> accountTags = TagHelper.getAccountTags(a.Id);
             System.assertEquals(1, accountTags.size());
 
-            TagHelper.SoftDeleteLink(oId);
+
+            TagHelper.SoftDeleteLink(oId);            
+
+            TagHelper.getSomething('DummySuccess');
 
             Test.stopTest();
         }
