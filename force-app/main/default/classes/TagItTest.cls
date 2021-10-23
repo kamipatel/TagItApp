@@ -56,8 +56,14 @@ public class TagItTest {
 
             TagHelper.SoftDeleteLink(oId);            
 
-            TagHelper.getSomething('DummySuccess');
 
+
+            TagHelper.getSomething('DummySuccess');
+            
+            TagHelper.ThrowCPULimit();
+            
+            TagHelper.ThrowSOQLLimit();
+            
             Test.stopTest();
         }
     }

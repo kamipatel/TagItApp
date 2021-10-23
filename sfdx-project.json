@@ -5,8 +5,8 @@
             "default": true,
             "package": "TagIt App",
             "versionName": "v9",
-            "versionNumber": "9.1.0.NEXT",
-            "ancestorId": "TagIt App@8.0.0-1"
+            "versionNumber": "9.2.0.NEXT",
+            "ancestorId": "TagIt App@9.1.0-1"
         }
     ],
     "namespace": "tagitapp",
@@ -52,6 +52,7 @@
         "TagIt App@9.0.0-1": "04t3h0000045tjAAAQ",
         "TagIt App@9.0.0-2": "04t3h0000045tjFAAQ",
         "TagIt App@9.0.0-3": "04t3h0000045tjKAAQ",
-        "TagIt App@9.1.0-1": "04t3h0000045tjjAAA"
+        "TagIt App@9.1.0-1": "04t3h0000045tjjAAA",
+        "TagIt App@9.2.0-3": "04t3h0000045tkrAAA"
     }
 }

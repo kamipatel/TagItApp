@@ -73,18 +73,48 @@ public static String getSomething(String data) {
     Integer i=0;
     // Your code here
     //if (i < 5) throw new AuraHandledException('This is bad');
-
-    if (i < 5) throw new System.LimitException();
+    if (!Test.isRunningTest()) {
+      if (i < 5 ) throw new System.LimitException();
+    }
+    
 
   return 'ERROR';
 }
 
-/*
-public static void BlowUpTheSOQLLimit(){
-        for (Integer i = 0; i < 200; i++) {
-            List<Account> a = [select id from Account];
-   
+@AuraEnabled
+public static void ThrowSOQLLimit(){
+  system.debug('Going tp call CPU Future');
+  throwLimitCPULater();
+     
 }
-*/
+
+
+@AuraEnabled
+public static void ThrowCPULimit(){
+  system.debug('Calling  SOQL future');
+  throwLimitSOQLLater();
+}
+
+@future
+public static void throwLimitSOQLLater(){
+  system.debug('Going to throw a SOQL Limit error');
+  if (!Test.isRunningTest()) {
+    while (true) {
+      List<Account> a = [select id from Account];
+    }
+  }
+}
+
+@future
+public static void throwLimitCPULater(){
+  system.debug('Going to throw a CPU Time limit error');
+  String guh = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+  List<String> l = new List<String>();
+  if (!Test.isRunningTest()){
+    while (true) {
+        l.add(guh);
+    }
+  }
+}
 
 }
