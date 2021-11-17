@@ -1,0 +1,11 @@
+<apex:page controller="TagHelper">
+  <h1>Congratulations</h1>
+  This is the Tag Helper Page
+  
+  <apex:form >
+      <apex:commandButton action="{!ThrowSOQLLimit}" value="Error"/>
+      <apex:dataList value="{!Tags}" var="tag">
+          <apex:outputText value="{!tag.Name}"/>
+      </apex:dataList>
+  </apex:form>
+</apex:page>
